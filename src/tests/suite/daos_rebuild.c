@@ -377,7 +377,8 @@ rebuild_destroy_pool_cb(void *data)
 	rebuild_pool_disconnect_internal(data);
 
 	if (arg->myrank == 0) {
-		rc = daos_pool_destroy(arg->pool.pool_uuid, NULL, true, NULL);
+		rc = dmg_pool_destroy(dmg_config_file, arg->pool.pool_uuid,
+				      NULL, true);
 		if (rc)
 			print_message("failed to destroy pool"DF_UUIDF" %d\n",
 				      DP_UUID(arg->pool.pool_uuid), rc);
