@@ -39,6 +39,12 @@ class DestroyTests(TestWithServers):
 
     def setUp(self):
         """Set up for destroy."""
+
+        # DAOS-5525: Use compat shims until this test is updated.
+        import os
+        dmg = self.get_dmg_command()
+        os.environ['DMG_CONFIG_FILE'] = dmg.yaml.filename
+
         self.setup_start_servers = False
         super(DestroyTests, self).setUp()
 
